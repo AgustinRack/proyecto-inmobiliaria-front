@@ -1,62 +1,33 @@
-const Login = () => {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { logUser } = useContext(UserContext);
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-  const handleSubmit = (e) => {
+import useInput from "../hook/useInput";
+import { registerUser } from "../state/user/userActions";
+import { Link } from "react-router-dom";
+
+export const SignUp = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const name = useInput();
+  const lastName = useInput();
+  const email = useInput();
+  const password = useInput();
+  const phoneNumber = useInput();
+
+  const handleRegister = async (e) => {
     e.preventDefault();
-    axios
-      .post(
-        "http://localhost:3001/api/users/login",
-        {
-          email,
-          password,
-        },
-        { withCredentials: true }
+    await dispatch(
+      registerUser(
+        name.value,
+        lastName.value,
+        email.value,
+        password.value,
+        phoneNumber.value
       )
-      .then((res) => {
-        logUser(res.data);
-        console.log(res.data);
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("Se ha producido un error.");
-      });
+    );
+    navigate("/login");
   };
 
-  return (
-    <div className="formContainer">
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">Correo electrónico</label>
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            className="form-control bg-transparent text-white"
-            id="email"
-            placeholder="Ingrese su correo electrónico"
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Contraseña</label>
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            className="form-control bg-transparent text-white"
-            id="password"
-            placeholder="Ingrese su contraseña"
-          />
-        </div>
-        <button type="submit" className="btn text-white">
-          Iniciar sesión
-        </button>
-      </form>
-    </div>
-  );
+  return;
 };
-
-export default Login;
