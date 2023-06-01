@@ -29,5 +29,71 @@ export const SignUp = () => {
     navigate("/login");
   };
 
-  return;
+  return (
+    <div className="container">
+      <div className="row justify-content-center mt-5">
+        <div className="col-6">
+          <h2>Sign Up</h2>
+          <form onSubmit={handleRegister}>
+            <div className="mb-3">
+              <label htmlFor="name" className="form-label">
+                Name
+              </label>
+              <input type="text" className="form-control" id="name" {...name} />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="lastName" className="form-label">
+                Last Name
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="lastName"
+                {...lastName}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">
+                Email
+              </label>
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                {...email}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">
+                Password
+              </label>
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                {...password}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="phoneNumber" className="form-label">
+                Phone Number
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="phoneNumber"
+                {...phoneNumber}
+              />
+            </div>
+            <button type="submit" className="btn btn-primary">
+              Sign Up
+            </button>
+            <p className="mt-3">
+              Already have an account? <Link to="/login">Login</Link>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
 };
