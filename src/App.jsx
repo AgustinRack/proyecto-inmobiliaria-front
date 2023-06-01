@@ -7,8 +7,10 @@ import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <Navbar />
-    //<p>hola messi</p>;
+    <BrowserRouter>
+      <Navbar />
+      <p>hola mundo</p>;
+    </BrowserRouter>
   );
 }
 
