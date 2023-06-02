@@ -23,16 +23,15 @@ export const registerUser =
 
 export const loginUser = (email, password) => async (dispatch) => {
   try {
-    const response = await axios.post(`${settings.axiosURL}/users/login`, {
+    await axios.post(`${settings.axiosURL}/users/login`, {
       email,
       password,
     });
-    console.log(response);
-    // const payload = await axios.get(`${settings.axiosURL}/users/secret`);
-    // console.log("PAYLOAD: ", payload.data);
 
-    // const userData = payload.data;
-    await dispatch(loginSuccess(response.data));
+    const payload = await axios.get(`${settings.axiosURL}/users/secret`);
+
+    const userData = payload.data;
+    await dispatch(login(userData));
   } catch (error) {
     console.error("Login error:", error);
   }
