@@ -17,18 +17,16 @@ function NavigationBar() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="/users">En venta</Nav.Link>
-            <Nav.Link href="#action2">Alquiler</Nav.Link>
-            <Nav.Link href="/users">Agenda tu visita</Nav.Link>
+            <Nav.Link href="/">En venta</Nav.Link>
+            <Nav.Link href="/">Alquiler</Nav.Link>
+            <Nav.Link href="/">Agenda tu visita</Nav.Link>
             <NavDropdown title="más" id="navbarScrollingDropdown">
               <NavDropdown.Item href="/login">login</NavDropdown.Item>
               <NavDropdown.Item href="/signup">signup</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Nuestros servicios
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action5">Nosotros</NavDropdown.Item>
-              <NavDropdown.Item href="#action5">Contacto</NavDropdown.Item>
+              <NavDropdown.Item href="/">Nuestros servicios</NavDropdown.Item>
+              <NavDropdown.Item href="/">Nosotros</NavDropdown.Item>
+              <NavDropdown.Item href="/">Contacto</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Form className="d-flex">
