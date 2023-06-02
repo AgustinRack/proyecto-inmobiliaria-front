@@ -31,7 +31,7 @@ export const loginUser = (email, password) => async (dispatch) => {
     const payload = await axios.get(`${settings.axiosURL}/users/secret`);
 
     const userData = payload.data;
-    await dispatch(login(userData));
+    await dispatch(loginSuccess(userData));
   } catch (error) {
     console.error("Login error:", error);
   }
@@ -43,14 +43,5 @@ export const logoutUser = () => async (dispatch) => {
     dispatch(logoutSuccess());
   } catch (error) {
     console.error("Login error:", error);
-  }
-};
-
-export const fetchUsers = () => async (dispatch) => {
-  try {
-    const response = await axios.get(`${settings.axiosURL}/admin/users`);
-    dispatch(list(response.data));
-  } catch (error) {
-    console.error("Fetch error:", error);
   }
 };
