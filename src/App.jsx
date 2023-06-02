@@ -8,6 +8,13 @@ import { Login } from "./components/Login";
 import { SignUp } from "./components/SingUp";
 
 function App() {
+  useEffect(() => {
+    async function fetchUser() {
+      const user = await axios.get(`${settings.axiosURL}/users/me`);
+      await dispatch(login(user.data));
+    }
+    fetchUser();
+  }, []);
   return (
     <BrowserRouter>
       <Navbar />
