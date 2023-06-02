@@ -13,13 +13,13 @@ function App() {
   const userData = useSelector((state) => state.user.userData);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   async function fetchUser() {
-  //     const user = await axios.get(`${settings.axiosURL}/users/me`);
-  //     await dispatch(loginSuccess(user.data));
-  //   }
-  //   fetchUser();
-  // }, []);
+  useEffect(() => {
+    async function fetchUser() {
+      const user = await axios.get(`${settings.axiosURL}/users/secret`);
+      await dispatch(loginSuccess(user.data));
+    }
+    fetchUser();
+  }, []);
 
   return (
     <BrowserRouter>
