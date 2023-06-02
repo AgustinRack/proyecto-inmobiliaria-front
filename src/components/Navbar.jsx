@@ -4,12 +4,15 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { useSelector } from "react-redux";
 
 function NavigationBar() {
+  const user = useSelector((state) => state.user.userData);
+  console.log(user);
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="/">HOD.</Navbar.Brand>
+        <Navbar.Brand href="/">{user.name ? user.name : "HOD."}</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -21,9 +24,18 @@ function NavigationBar() {
             <Nav.Link href="/">Alquiler</Nav.Link>
             <Nav.Link href="/">Agenda tu visita</Nav.Link>
             <NavDropdown title="más" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="/login">login</NavDropdown.Item>
-              <NavDropdown.Item href="/signup">signup</NavDropdown.Item>
-              <NavDropdown.Divider />
+              {user.name ? (
+                <>
+                  <NavDropdown.Item href="/logout">logout</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                </>
+              ) : (
+                <>
+                  <NavDropdown.Item href="/login">login</NavDropdown.Item>
+                  <NavDropdown.Item href="/signup">signup</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                </>
+              )}
               <NavDropdown.Item href="/">Nuestros servicios</NavDropdown.Item>
               <NavDropdown.Item href="/">Nosotros</NavDropdown.Item>
               <NavDropdown.Item href="/">Contacto</NavDropdown.Item>

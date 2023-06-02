@@ -1,7 +1,7 @@
 import axios from "axios";
-axios.defaults.withCredentials = true;
 import { loginSuccess, logoutSuccess, list } from "./userSlice";
 import * as settings from "../../settings";
+axios.defaults.withCredentials = true;
 
 export const registerUser =
   (name, lastName, email, password, phoneNumber) => async (dispatch) => {
