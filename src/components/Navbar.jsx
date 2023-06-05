@@ -8,11 +8,10 @@ import { useSelector } from "react-redux";
 
 function NavigationBar() {
   const user = useSelector((state) => state.user.userData);
-  console.log(user);
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="/">{user.name ? user.name : "HOD."}</Navbar.Brand>
+        <Navbar.Brand href="/">{user ? user.name : "HOD."}</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -24,7 +23,7 @@ function NavigationBar() {
             <Nav.Link href="/">Alquiler</Nav.Link>
             <Nav.Link href="/">Agenda tu visita</Nav.Link>
             <NavDropdown title="más" id="navbarScrollingDropdown">
-              {user.name ? (
+              {user ? (
                 <>
                   <NavDropdown.Item href="/logout">logout</NavDropdown.Item>
                   <NavDropdown.Divider />
