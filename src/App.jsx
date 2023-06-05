@@ -10,7 +10,7 @@ import { SignUp } from "./components/SingUp";
 import { loginSuccess } from "./state/user/userSlice";
 
 function App() {
-  const userData = useSelector((state) => state.user.userData);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ function App() {
       const user = await axios.get(`${settings.axiosURL}/users/secret`);
       await dispatch(loginSuccess(user.data));
     }
-    fetchUser();
+    if (user.isAuthenticated) fetchUser();
   }, []);
 
   return (
