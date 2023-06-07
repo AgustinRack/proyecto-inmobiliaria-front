@@ -21,7 +21,7 @@ function NavigationBar() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="/">En venta</Nav.Link>
+            <Nav.Link href="/for-sale">En venta</Nav.Link>
             <Nav.Link href="/">Alquiler</Nav.Link>
             <Nav.Link href="/">Agenda tu visita</Nav.Link>
             <NavDropdown title="más" id="navbarScrollingDropdown">
