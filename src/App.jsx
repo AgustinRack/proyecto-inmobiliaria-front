@@ -19,9 +19,10 @@ function App() {
   useEffect(() => {
     async function fetchUser() {
       const user = await axios.get(`${settings.axiosURL}/users/secret`);
+
       await dispatch(loginSuccess(user.data));
     }
-    if (user.isAuthenticated) fetchUser();
+    fetchUser();
   }, []);
 
   return (
@@ -30,9 +31,9 @@ function App() {
       <Routes>
         <Route path="/" element={<ForRent />} />
         <Route path="/for-sale" element={<ForSale />} />
-        <Route path="/properties/:id" element={<PropertyDetail />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/property/:id" element={<PropertyDetail />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
