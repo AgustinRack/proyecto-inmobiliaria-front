@@ -42,7 +42,7 @@ function NavigationBar() {
             <NavDropdown title="más" id="navbarScrollingDropdown">
               {user.isAuthenticated ? (
                 <>
-                  <NavDropdown.Item as={Link} to="/edit">
+                  <NavDropdown.Item as={Link} to="/user/profile">
                     Mis datos
                   </NavDropdown.Item>
                   <NavDropdown.Item onClick={handleLogout} as={Link} to="/">
