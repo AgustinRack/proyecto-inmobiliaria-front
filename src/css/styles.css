@@ -1,8 +1,13 @@
-/* .Card {
+.Card {
   position: relative;
   width: 530px;
   height: 200px;
-  left: 179px;
-  top: 557px;
-  margin-bottom: 200px;
-} */
+  left: 20px;
+  top: 40px;
+  margin-bottom: 40px;
+}
+
+.price {
+  display: block;
+  width: 100%;
+}

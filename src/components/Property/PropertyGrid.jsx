@@ -12,7 +12,7 @@ export default function PropertyGrid() {
   return (
     <Row>
       {properties.map((property) => (
-        <Col key={property.id} xs={12} sm={6} md={4} lg={3}>
+        <Col key={property.id}>
           <PropertyCard property={property} />
         </Col>
       ))}

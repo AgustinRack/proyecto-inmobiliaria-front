@@ -28,33 +28,62 @@ export default function PropertyCard({ property }) {
   } = property;
 
   return (
-    <Card className="Card" style={{ width: "18rem" }}>
+    <Card className="Card">
       <Row>
         <Col xs={12} md={4}>
           <Card.Img variant="top" src={img} />
         </Col>
-        <Col xs={6} md={8}>
+        <Col xs={12} md={8}>
           <Card.Body>
-            <Card.Title>$ {price}</Card.Title>
+            <Row>
+              <Col xs={12} md={6}>
+                <span className="price">${price}</span>
+              </Col>
+              <Col xs={12} md={6}>
+                <ListGroup.Item>{neighborhood}</ListGroup.Item>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={6} md={4}>
+                <ListGroup.Item>Size: {size} m²</ListGroup.Item>
+              </Col>
+              <Col xs={6} md={4}>
+                {category.categoryName !== "terreno" && (
+                  <>
+                    {bathrooms === 1 ? (
+                      <ListGroup.Item>{bathrooms} baño</ListGroup.Item>
+                    ) : (
+                      <ListGroup.Item>{bathrooms} baños</ListGroup.Item>
+                    )}
+                  </>
+                )}
+              </Col>
+              <Col xs={6} md={4}>
+                {category.categoryName !== "terreno" && (
+                  <ListGroup.Item>{bedrooms} dorm.</ListGroup.Item>
+                )}
+              </Col>
+            </Row>
             <Card.Text>{description}</Card.Text>
-            <ListGroup className="list-group-flush">
-              <ListGroup.Item>Category: {category.categoryName}</ListGroup.Item>
-              <ListGroup.Item>Country: {country}</ListGroup.Item>
-              <ListGroup.Item>Neighborhood: {neighborhood}</ListGroup.Item>
-              <ListGroup.Item>Address: {address}</ListGroup.Item>
-              <ListGroup.Item>Size: {size} m²</ListGroup.Item>
-              <ListGroup.Item>Bedrooms: {bedrooms}</ListGroup.Item>
-              <ListGroup.Item>Bathrooms: {bathrooms}</ListGroup.Item>
-            </ListGroup>
-            <Card.Link href="#">favoritos</Card.Link>
-            <Card.Link href="#">agenda tu visita</Card.Link>
-            <Card.Link
-              onClick={() => dispatch(setSelectedProperty(property))}
-              as={Link}
-              to={`/property/${id}`}
-            >
-              ver mas
-            </Card.Link>
+            <Row>
+              <Col>
+                <Card.Link>favoritos</Card.Link>
+              </Col>
+              <Col>
+                <Card.Link as={Link} to="/visits">
+                  agenda tu visita
+                </Card.Link>
+              </Col>
+              <Col>
+                <Card.Link
+                  onClick={() => dispatch(setSelectedProperty(property))}
+                  as={Link}
+                  to={`/property/${id}`}
+                >
+                  ver mas
+                </Card.Link>
+              </Col>
+            </Row>
           </Card.Body>
         </Col>
       </Row>
