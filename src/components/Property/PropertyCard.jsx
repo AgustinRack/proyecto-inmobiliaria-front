@@ -68,21 +68,27 @@ export default function PropertyCard({ property }) {
             <Card.Text>{description}</Card.Text>
             <Row>
               <Col>
-                <Card.Link>favoritos</Card.Link>
+                <button className="heart-button">
+                  <span className="heart-icon"></span>
+                </button>
               </Col>
               <Col>
-                <Card.Link as={Link} to="/visits">
-                  agenda tu visita
-                </Card.Link>
+                <button className="phone-button">
+                  <span className="call-icon"></span>
+                </button>
               </Col>
               <Col>
-                <Card.Link
-                  onClick={() => dispatch(setSelectedProperty(property))}
-                  as={Link}
+                <Link
                   to={`/property/${id}`}
+                  className="custom-button"
+                  onClick={() => dispatch(setSelectedProperty(property))}
                 >
-                  ver mas
-                </Card.Link>
+                  <img
+                    className="button-icon"
+                    src="https://cdn.discordapp.com/attachments/1087732828525056031/1116793302184898663/image.png"
+                    alt="Custom Button"
+                  />
+                </Link>
               </Col>
             </Row>
           </Card.Body>

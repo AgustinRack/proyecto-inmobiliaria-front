@@ -11,3 +11,115 @@
   display: block;
   width: 100%;
 }
+
+/* boton corazon */
+.heart-button {
+  width: 35px;
+  height: 35px;
+  border: 2px solid red;
+  border-radius: 50%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.heart-icon {
+  width: 20px;
+  height: 20px;
+  background-color: blue;
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 21.35l-1.45-1.32C5.53 15.47 2 12.18 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.68-3.53 6.97-8.55 11.53L12 21.35z"/></svg>');
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 21.35l-1.45-1.32C5.53 15.47 2 12.18 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.68-3.53 6.97-8.55 11.53L12 21.35z"/></svg>');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+}
+
+.heart-button:hover {
+  background-color: red;
+}
+
+.heart-button:hover .heart-icon {
+  background-color: white;
+}
+
+/* boton telefono */
+
+/* .phone-button {
+  width: 35px;
+  height: 35px;
+  border: 2px solid red;
+  border-radius: 50%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.call-icon {
+  width: 20px;
+  height: 20px;
+  background-image: url("https://cdn.discordapp.com/attachments/1087732828525056031/1116792460966903959/image.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.phone-button:hover {
+  background-color: red;
+} */
+
+.phone-button {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  border: 2px solid red;
+  border-radius: 50%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.call-icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-image: url("https://cdn.discordapp.com/attachments/1087732828525056031/1116792460966903959/image.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transition: transform 0.1s ease-in-out;
+}
+
+.phone-button:hover .call-icon {
+  transform: scale(1.2);
+}
+
+/* boton ver mas */
+
+.custom-button {
+  width: 100px;
+  height: 100px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.button-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease-in-out;
+}
+
+.custom-button:hover .button-icon {
+  transform: scale(1.2);
+}
