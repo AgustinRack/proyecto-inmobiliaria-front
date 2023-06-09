@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import { useDispatch } from "react-redux";
 import { setSelectedProperty } from "../../state/property";
 import { Link } from "react-router-dom";
+// import "../../css/propertyCard.css";
 
 export default function PropertyCard({ property }) {
   const dispatch = useDispatch();
@@ -28,10 +29,10 @@ export default function PropertyCard({ property }) {
   return (
     <Card style={{ width: "18rem" }}>
       <Row>
-        <Col xs={4}>
-          <Card.Img variant="top" src={img} />
+        <Col xs={12} md={4}>
+          <Card.Img variant="top" src="holder.js/100px180" />
         </Col>
-        <Col xs={8}>
+        <Col xs={6} md={8}>
           <Card.Body>
             <Card.Title>{price}</Card.Title>
             <Card.Text>{description}</Card.Text>
