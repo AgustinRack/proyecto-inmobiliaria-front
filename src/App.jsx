@@ -12,6 +12,7 @@ import ForSale from "./components/ForSale/ForSale";
 import { loginSuccess } from "./state/user/userSlice";
 import { PropertyDetail } from "./components/Property/PropertyDetail";
 import UserProfile from "./components/User/UserProfile";
+import UserEdit from "./components/User/UserEdit";
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -36,7 +37,10 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         {user.isAuthenticated ? (
-          <Route path="/user/profile" element={<UserProfile />} />
+          <>
+            <Route path="/user/profile" element={<UserProfile />} />
+            <Route path="/user/edit" element={<UserEdit />} />
+          </>
         ) : (
           <Route path="*" element={<Navigate to="/" />} />
         )}
