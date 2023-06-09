@@ -16,6 +16,7 @@ export default function PropertyCard({ property }) {
     id,
     price,
     country,
+    province,
     neighborhood,
     address,
     size,
@@ -40,7 +41,7 @@ export default function PropertyCard({ property }) {
                 <span className="price">${price}</span>
               </Col>
               <Col xs={12} md={6}>
-                <ListGroup.Item>{neighborhood}</ListGroup.Item>
+                <ListGroup.Item>{province}</ListGroup.Item>
               </Col>
             </Row>
             <Row>
