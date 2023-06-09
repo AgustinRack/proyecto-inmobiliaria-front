@@ -4,16 +4,22 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutUser } from "../state/user/userActions";
+
+import axios from "axios";
+import * as settings from "../settings/index";
 import "../css/navbar.css";
+
 
 function NavigationBar() {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
+    axios.get(`${settings.axiosURL}/users/logout`);
     dispatch(logoutUser());
     navigate("/");
   };
@@ -46,7 +52,7 @@ function NavigationBar() {
                   <NavDropdown.Item as={Link} to="/user/profile">
                     Mis datos
                   </NavDropdown.Item>
-                  <NavDropdown.Item onClick={handleLogout} as={Link} to="/">
+                  <NavDropdown.Item onClick={handleLogout}>
                     logout
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
