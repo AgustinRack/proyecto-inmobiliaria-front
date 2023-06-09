@@ -7,8 +7,11 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutUser } from "../state/user/userActions";
+
 import axios from "axios";
 import * as settings from "../settings/index";
+import "../css/navbar.css";
+
 
 function NavigationBar() {
   const user = useSelector((state) => state.user);
@@ -22,9 +25,9 @@ function NavigationBar() {
   };
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar className="navbar-custom" expand="lg" variant="dark">
       <Container fluid>
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} to="/" style={{ color: "white" }}>
           {user.isAuthenticated ? user.userData.name : "HOD."}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
