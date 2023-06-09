@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { setSelectedProperty } from "../../state/property";
 import { Link } from "react-router-dom";
 // import "../../css/propertyCard.css";
+import "../../css/styles.css";
 
 export default function PropertyCard({ property }) {
   const dispatch = useDispatch();
@@ -27,21 +28,21 @@ export default function PropertyCard({ property }) {
   } = property;
 
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card className="Card" style={{ width: "18rem" }}>
       <Row>
         <Col xs={12} md={4}>
-          <Card.Img variant="top" src="holder.js/100px180" />
+          <Card.Img variant="top" src={img} />
         </Col>
         <Col xs={6} md={8}>
           <Card.Body>
-            <Card.Title>{price}</Card.Title>
+            <Card.Title>$ {price}</Card.Title>
             <Card.Text>{description}</Card.Text>
             <ListGroup className="list-group-flush">
               <ListGroup.Item>Category: {category.categoryName}</ListGroup.Item>
               <ListGroup.Item>Country: {country}</ListGroup.Item>
               <ListGroup.Item>Neighborhood: {neighborhood}</ListGroup.Item>
               <ListGroup.Item>Address: {address}</ListGroup.Item>
-              <ListGroup.Item>Size: {size}</ListGroup.Item>
+              <ListGroup.Item>Size: {size} m²</ListGroup.Item>
               <ListGroup.Item>Bedrooms: {bedrooms}</ListGroup.Item>
               <ListGroup.Item>Bathrooms: {bathrooms}</ListGroup.Item>
             </ListGroup>
