@@ -3,13 +3,14 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setSelectedProperty } from "../../state/property";
 import { Link } from "react-router-dom";
 // import "../../css/propertyCard.css";
 import "../../css/styles.css";
 
 export default function PropertyCard({ property }) {
+  const admin = useSelector((state) => state.user.admin);
   const dispatch = useDispatch();
 
   const {
@@ -67,29 +68,47 @@ export default function PropertyCard({ property }) {
             </Row>
             <Card.Text>{description}</Card.Text>
             <Row>
-              <Col>
-                <button className="heart-button">
-                  <span className="heart-icon"></span>
-                </button>
-              </Col>
-              <Col>
-                <button className="phone-button">
-                  <span className="call-icon"></span>
-                </button>
-              </Col>
-              <Col>
-                <Link
-                  to={`/property/${id}`}
-                  className="custom-button"
-                  onClick={() => dispatch(setSelectedProperty(property))}
-                >
-                  <img
-                    className="button-icon"
-                    src="https://cdn.discordapp.com/attachments/1087732828525056031/1116793302184898663/image.png"
-                    alt="Custom Button"
-                  />
-                </Link>
-              </Col>
+              {admin ? (
+                <Col>
+                  <Link
+                    to={`/admin/property/details/${id}`}
+                    className="custom-button-admin"
+                    onClick={() => dispatch(setSelectedProperty(property))}
+                  >
+                    <img
+                      className="button-icon-admin"
+                      src="https://cdn.discordapp.com/attachments/1087732828525056031/1116793302184898663/image.png"
+                      alt="Custom Button"
+                    />
+                  </Link>
+                </Col>
+              ) : (
+                <>
+                  <Col>
+                    <button className="heart-button">
+                      <span className="heart-icon"></span>
+                    </button>
+                  </Col>
+                  <Col>
+                    <button className="phone-button">
+                      <span className="call-icon"></span>
+                    </button>
+                  </Col>
+                  <Col>
+                    <Link
+                      to={`/property/${id}`}
+                      className="custom-button-user"
+                      onClick={() => dispatch(setSelectedProperty(property))}
+                    >
+                      <img
+                        className="button-icon-user"
+                        src="https://cdn.discordapp.com/attachments/1087732828525056031/1116793302184898663/image.png"
+                        alt="Custom Button"
+                      />
+                    </Link>
+                  </Col>
+                </>
+              )}
             </Row>
           </Card.Body>
         </Col>
