@@ -13,6 +13,8 @@ import { loginSuccess } from "./state/user/userSlice";
 import { PropertyDetail } from "./components/Property/PropertyDetail";
 import UserProfile from "./components/User/UserProfile";
 import UserEdit from "./components/User/UserEdit";
+import { PropertyInfo } from "./components/Admin/PropertyInfo";
+import { PropertyEdit } from "./components/Admin/PropertyEdit";
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -43,6 +45,15 @@ function App() {
           </>
         ) : (
           <Route path="*" element={<Navigate to="/" />} />
+        )}
+        {user.admin && (
+          <>
+            <Route
+              path="/admin/property/details/:id"
+              element={<PropertyInfo />}
+            />
+            <Route path="/admin/property/edit" element={<PropertyEdit />} />
+          </>
         )}
       </Routes>
     </BrowserRouter>
