@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,8 +19,27 @@ export const PropertyEdit = () => {
   const bathroomsInput = useInput(property.bathrooms);
   const descriptionInput = useInput(property.description);
   const imgInput = useInput(property.img);
-  const imgsInput = useInput(property.imgs);
+  // const imgsInput = useInput(property.imgs);
   const categoryInput = useInput(property.category);
+
+  // Con esto
+  const [imgs, setImgs] = useState(property.imgs);
+
+  const handleAddImg = () => {
+    setImgs([...imgs, ""]);
+  };
+
+  const handleRemoveImg = (index) => {
+    const updatedImgs = [...imgs];
+    updatedImgs.splice(index, 1);
+    setImgs(updatedImgs);
+  };
+
+  const handleEditImg = (index, value) => {
+    const updatedImgs = [...imgs];
+    updatedImgs[index] = value;
+    setImgs(updatedImgs);
+  };
 
   if (!property) {
     return <div>Loading...</div>;
@@ -43,14 +62,14 @@ export const PropertyEdit = () => {
           bathrooms: bathroomsInput.value,
           description: descriptionInput.value,
           img: imgInput.value,
-          imgs: imgsInput.value,
+          imgs: imgs,
           category: categoryInput.value,
         }
       );
-      const updatedUser = response.data;
-      dispatch(loginSuccess(updatedUser));
+      const updatedProperty = response.data;
+      dispatch(setSelectedProperty(updatedProperty));
     } catch (error) {
-      console.error("Error updating user:", error);
+      console.error("Error updating property:", error);
     }
   };
 
@@ -60,11 +79,11 @@ export const PropertyEdit = () => {
       <div>
         <Form.Group>
           <Form.Label>Tipo</Form.Label>
-          {is_for_rent ? (
-            <p>Propiedad en alquiler</p>
-          ) : (
-            <p>Propiedad en venta</p>
-          )}
+          <Form.Label>Tipo:</Form.Label>
+          <Form.Control as="select" {...is_for_rentInput}>
+            <option value={false}>En venta</option>
+            <option value={true}>En alquiler</option>
+          </Form.Control>
           <hr className="separator" />
           <Form.Label>Price:</Form.Label>
           <Form.Control type="text" {...priceInput} />
@@ -94,27 +113,42 @@ export const PropertyEdit = () => {
           <Form.Control type="text" {...descriptionInput} />
 
           <Form.Label>img:</Form.Label>
-          <p>
-            <a href={img} target="_blank" rel="noopener noreferrer">
-              {img}
-            </a>
-          </p>
+          <Form.Control type="text" {...imgInput} />
+
           <hr className="separator" />
           <Form.Label>imgs:</Form.Label>
           {imgs.map((img, index) => (
-            <p key={index}>
-              <a href={img} target="_blank" rel="noopener noreferrer">
-                {img}
-              </a>
-            </p>
+            <div key={index}>
+              <Form.Control
+                type="text"
+                value={img}
+                onChange={(e) => handleEditImg(index, e.target.value)}
+              />
+              <Button variant="danger" onClick={() => handleRemoveImg(index)}>
+                Eliminar
+              </Button>
+            </div>
           ))}
+          <Button variant="success" onClick={handleAddImg}>
+            Agregar imagen
+          </Button>
           <hr className="separator" />
           <Form.Label>Categoria:</Form.Label>
-          <p>{category.categoryName}</p>
+          <Form.Control as="select" {...categoryInput}>
+            <option value={1}>departamento</option>
+            <option value={2}>PH</option>
+            <option value={3}>casa</option>
+            <option value={4}>local</option>
+            <option value={5}>terreno</option>
+          </Form.Control>
           <hr className="separator" />
         </Form.Group>
       </div>
-      <Button onClick={handleSaveProperty} as={Link} to="/user/profile">
+      <Button
+        onClick={handleSaveProperty}
+        as={Link}
+        to="/admin/property/details/:id"
+      >
         Editar
       </Button>
     </div>
