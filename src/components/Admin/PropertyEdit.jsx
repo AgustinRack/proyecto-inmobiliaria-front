@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,9 +21,8 @@ export const PropertyEdit = () => {
   const bathroomsInput = useInput(property.bathrooms);
   const descriptionInput = useInput(property.description);
   const imgInput = useInput(property.img);
-  // const imgsInput = useInput(property.imgs);
-  const imgsInput = property.imgs.map((img) => useInput(img));
   const categoryInput = useInput(property.categoryId);
+  const [imgsInput, setImgsInput] = useState(property.imgs);
 
   if (!property) {
     return <div>Loading...</div>;
@@ -46,23 +45,14 @@ export const PropertyEdit = () => {
           bathrooms: bathroomsInput.value,
           description: descriptionInput.value,
           img: imgInput.value,
-          imgs: imgsInput.map((imgInput) => imgInput.value),
+          imgs: imgsInput,
           categoryId: categoryInput.value,
         }
       );
 
       const updatedProperty = response.data;
+      console.log(updatedProperty);
       dispatch(setSelectedProperty(updatedProperty));
-      // revisar esta seccion, por que el estado de updatedProperty
-      // no cambia el category
-      //
-      const reloadResponse = await axios.get(
-        `${settings.axiosURL}/properties/property/${property.id}`
-      );
-
-      const reloadedProperty = reloadResponse.data;
-
-      dispatch(setSelectedProperty(reloadedProperty));
     } catch (error) {
       console.error("Error updating property:", error);
     }
@@ -72,17 +62,20 @@ export const PropertyEdit = () => {
     setIsForRentInput(e.target.value);
   };
 
-  const handleEditImg = (index, value) => {
+  const handleAddImage = () => {
+    setImgsInput([...imgsInput, ""]);
+  };
+
+  const handleRemoveImage = (index) => {
     const updatedImgsInput = [...imgsInput];
-    updatedImgsInput[index].onChange({ target: { value } });
+    updatedImgsInput.splice(index, 1);
+    setImgsInput(updatedImgsInput);
   };
 
-  const handleRemoveImg = (index) => {
-    imgsInput.splice(index, 1);
-  };
-
-  const handleAddImg = () => {
-    console.log(imgsInput);
+  const handleImageChange = (index, e) => {
+    const updatedImgsInput = [...imgsInput];
+    updatedImgsInput[index] = e.target.value;
+    setImgsInput(updatedImgsInput);
   };
 
   return (
@@ -132,21 +125,22 @@ export const PropertyEdit = () => {
 
           <hr className="separator" />
           <Form.Label>Imagenes:</Form.Label>
-          {imgsInput.map((imgInput, index) => (
+          {imgsInput.map((img, index) => (
             <div key={index}>
               <Form.Control
                 type="text"
-                value={imgInput.value}
-                onChange={(e) => handleEditImg(index, e.target.value)}
+                value={img}
+                onChange={(e) => handleImageChange(index, e)}
               />
-              <Button variant="danger" onClick={() => handleRemoveImg(index)}>
+              <Button variant="danger" onClick={() => handleRemoveImage(index)}>
                 Eliminar
               </Button>
             </div>
           ))}
-          <Button variant="success" onClick={handleAddImg}>
-            Agregar imagen
+          <Button variant="success" onClick={handleAddImage}>
+            Agregar Imagen
           </Button>
+
           <hr className="separator" />
           <Form.Label>Categoria:</Form.Label>
           <Form.Control as="select" {...categoryInput}>
@@ -159,13 +153,7 @@ export const PropertyEdit = () => {
           <hr className="separator" />
         </Form.Group>
       </div>
-      <Button
-        onClick={handleSaveProperty}
-        // as={Link}
-        // to={`/admin/property/details/${property.id}`}
-      >
-        Editar
-      </Button>
+      <Button onClick={handleSaveProperty}>Editar</Button>
       <Button as={Link} to={`/admin/property/details/${property.id}`}>
         Volver
       </Button>
