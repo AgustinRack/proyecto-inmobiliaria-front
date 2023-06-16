@@ -33,7 +33,7 @@ export default function PropertyCard({ property }) {
     <Card className="Card">
       <Row>
         <Col xs={12} md={4}>
-          <Card.Img variant="top" src={img} />
+          <Card.Img className="soytufan" variant="top" src={img} />
         </Col>
         <Col xs={12} md={8}>
           <Card.Body>
