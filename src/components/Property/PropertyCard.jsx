@@ -90,9 +90,11 @@ export default function PropertyCard({ property }) {
                     </button>
                   </Col>
                   <Col>
-                    <button className="phone-button">
-                      <span className="call-icon"></span>
-                    </button>
+                    <Link to="/user/visits">
+                      <button className="phone-button">
+                        <span className="call-icon"></span>
+                      </button>
+                    </Link>
                   </Col>
                   <Col>
                     <Link

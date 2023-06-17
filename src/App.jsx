@@ -15,6 +15,7 @@ import UserProfile from "./components/User/UserProfile";
 import UserEdit from "./components/User/UserEdit";
 import { PropertyInfo } from "./components/Admin/PropertyInfo";
 import { PropertyEdit } from "./components/Admin/PropertyEdit";
+import AppointmentCalendar from "./components/Visits/Calendar";
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -38,6 +39,7 @@ function App() {
         <Route path="/property/:id" element={<PropertyDetail />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/user/visits" element={<AppointmentCalendar />} />
         {user.isAuthenticated ? (
           <>
             <Route path="/user/profile" element={<UserProfile />} />
