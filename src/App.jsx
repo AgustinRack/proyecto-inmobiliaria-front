@@ -60,6 +60,7 @@ function App() {
               element={<PropertyInfo />}
             />
             <Route path="/admin/property/edit" element={<PropertyEdit />} />
+            <Route path="/user/visits" element={<UserVisits />} />
           </>
         )}
       </Routes>

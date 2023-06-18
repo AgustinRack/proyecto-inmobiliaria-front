@@ -42,7 +42,7 @@ function NavigationBar() {
             <Nav.Link as={Link} to="/">
               Alquiler
             </Nav.Link>
-            <Nav.Link as={Link} to="/">
+            <Nav.Link as={Link} to="/user/visits">
               Visitas
             </Nav.Link>
             <NavDropdown title="más" id="navbarScrollingDropdown">
