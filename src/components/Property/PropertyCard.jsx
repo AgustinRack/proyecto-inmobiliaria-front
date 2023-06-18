@@ -90,7 +90,10 @@ export default function PropertyCard({ property }) {
                     </button>
                   </Col>
                   <Col>
-                    <Link to="/user/visits">
+                    <Link
+                      to="/visits/appointment"
+                      onClick={() => dispatch(setSelectedProperty(property))}
+                    >
                       <button className="phone-button">
                         <span className="call-icon"></span>
                       </button>
