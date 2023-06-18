@@ -39,9 +39,12 @@ function App() {
         <Route path="/property/:id" element={<PropertyDetail />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/user/visits" element={<AppointmentCalendar />} />
         {user.isAuthenticated ? (
           <>
+            <Route
+              path="/visits/appointment"
+              element={<AppointmentCalendar />}
+            />
             <Route path="/user/profile" element={<UserProfile />} />
             <Route path="/user/edit" element={<UserEdit />} />
           </>
