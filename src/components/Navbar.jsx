@@ -112,8 +112,8 @@ function NavigationBar() {
             <Nav.Link as={Link} to="/">
               Alquiler
             </Nav.Link>
-            <Nav.Link as={Link} to="/">
-              Agenda tu visita
+            <Nav.Link as={Link} to="/user/visits">
+              Mis visitas
             </Nav.Link>
             <NavDropdown title="más" id="navbarScrollingDropdown">
               {user.isAuthenticated ? (

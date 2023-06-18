@@ -16,6 +16,7 @@ import UserEdit from "./components/User/UserEdit";
 import { PropertyInfo } from "./components/Admin/PropertyInfo";
 import { PropertyEdit } from "./components/Admin/PropertyEdit";
 import AppointmentCalendar from "./components/Visits/Calendar";
+import UserVisits from "./components/User/UserVisits";
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -47,6 +48,7 @@ function App() {
             />
             <Route path="/user/profile" element={<UserProfile />} />
             <Route path="/user/edit" element={<UserEdit />} />
+            <Route path="/user/visits" element={<UserVisits />} />
           </>
         ) : (
           <Route path="*" element={<Navigate to="/" />} />

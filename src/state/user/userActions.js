@@ -13,9 +13,7 @@ export const registerUser =
         password,
         phoneNumber,
       });
-
-      const userData = response.data;
-      dispatch(loginSuccess(userData));
+      alert("usuario registrado con exito");
     } catch (error) {
       console.error("Register error:", error);
     }

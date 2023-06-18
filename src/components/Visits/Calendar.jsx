@@ -34,7 +34,11 @@ export default function AppointmentCalendar() {
   const handleConfirm = async () => {
     setHours(hours.filter((hour) => hour !== selectedHour));
     await saveData(dateState, selectedHour);
-    alert(`Nos vemos el ${formatDate(dateState)} a las ${selectedHour}:00`);
+    alert(
+      `Nos vemos el ${moment(dateState).format(
+        "DD/MM/YYYY"
+      )} a las ${selectedHour}:00`
+    );
   };
 
   const saveData = async (date, hour) => {
@@ -83,7 +87,6 @@ export default function AppointmentCalendar() {
       let usedHours = [];
       visits?.map((visit) => {
         if (moment(visit.date, "DD/MM/YYYY").isSame(date, "day")) {
-          console.log("soy el if", date);
           usedHours.push(visit.schedule);
         }
       });
