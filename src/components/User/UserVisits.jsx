@@ -31,7 +31,7 @@ export default function UserVisits() {
 
     fetchVisits();
   }, []);
-  console.log(userVisits.value);
+
   return (
     <Container>
       <Row>
