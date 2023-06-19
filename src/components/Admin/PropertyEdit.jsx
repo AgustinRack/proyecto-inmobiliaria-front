@@ -78,6 +78,13 @@ export const PropertyEdit = () => {
     setImgsInput(updatedImgsInput);
   };
 
+  const handleDeleteProperty = async (req, res) => {
+    try {
+      await axios.delete(`${settings.axiosURL}/admin/property/${property.id}`);
+      alert("Propiedad elimina exitosamente");
+    } catch (error) {}
+  };
+
   return (
     <div>
       <h3>Propiedad:</h3>
@@ -153,10 +160,24 @@ export const PropertyEdit = () => {
           <hr className="separator" />
         </Form.Group>
       </div>
-      <Button onClick={handleSaveProperty}>Editar</Button>
-      <Button as={Link} to={`/admin/property/details/${property.id}`}>
-        Volver
-      </Button>
+      <div className="d-flex justify-content-between">
+        <div>
+          <Button onClick={handleSaveProperty}>Editar</Button>
+          <Button as={Link} to={`/admin/property/details/${property.id}`}>
+            Volver
+          </Button>
+        </div>
+        <div>
+          <Button
+            variant="danger"
+            onClick={handleDeleteProperty}
+            as={Link}
+            to={"/"}
+          >
+            Eliminar Propiedad
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
