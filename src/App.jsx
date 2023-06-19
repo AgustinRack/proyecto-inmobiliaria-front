@@ -17,6 +17,7 @@ import { PropertyInfo } from "./components/Admin/PropertyInfo";
 import { PropertyEdit } from "./components/Admin/PropertyEdit";
 import AppointmentCalendar from "./components/Visits/Calendar";
 import UserVisits from "./components/User/UserVisits";
+import PropertyCreate from "./components/Admin/PropertyCreate";
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -61,6 +62,7 @@ function App() {
             />
             <Route path="/admin/property/edit" element={<PropertyEdit />} />
             <Route path="/user/visits" element={<UserVisits />} />
+            <Route path="/admin/create/property" element={<PropertyCreate />} />
           </>
         )}
       </Routes>
