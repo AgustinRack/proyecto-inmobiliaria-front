@@ -8,6 +8,7 @@ import { setSelectedProperty } from "../../state/property";
 import { Link } from "react-router-dom";
 // import "../../css/propertyCard.css";
 import "../../css/styles.css";
+import { ListGroupItem } from "react-bootstrap";
 
 export default function PropertyCard({ property }) {
   const admin = useSelector((state) => state.user.admin);
@@ -38,18 +39,18 @@ export default function PropertyCard({ property }) {
         <Col xs={12} md={8}>
           <Card.Body>
             <Row>
-              <Col xs={12} md={6}>
-                <span className="price">${price}</span>
+              <Col xs={12} md={4} className="price">
+                <ListGroup.Item>{price}</ListGroup.Item>
               </Col>
-              <Col xs={12} md={6}>
+              <Col xs={12} md={8} className="price">
                 <ListGroup.Item>{province}</ListGroup.Item>
               </Col>
             </Row>
             <Row>
-              <Col xs={6} md={4}>
+              <Col xs={6} md={4} className="price">
                 <ListGroup.Item>Size: {size} m²</ListGroup.Item>
               </Col>
-              <Col xs={6} md={4}>
+              <Col xs={6} md={4} className="price">
                 {category.categoryName !== "terreno" && (
                   <>
                     {bathrooms === 1 ? (
@@ -60,13 +61,17 @@ export default function PropertyCard({ property }) {
                   </>
                 )}
               </Col>
-              <Col xs={6} md={4}>
+              <Col xs={6} md={4} className="price">
                 {category.categoryName !== "terreno" && (
                   <ListGroup.Item>{bedrooms} dorm.</ListGroup.Item>
                 )}
               </Col>
             </Row>
-            <Card.Text>{description}</Card.Text>
+            <Row>
+              <ListGroupItem className="price-description">
+                {description}
+              </ListGroupItem>
+            </Row>
             <Row>
               {admin ? (
                 <Col>
