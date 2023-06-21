@@ -1,20 +1,32 @@
 .Card {
-  position: relative;
-  width: 530px;
-  height: 200px;
-  left: 20px;
-  top: 40px;
-  margin-bottom: 40px;
+  flex: 50%;
+  margin-top: 2%;
+  border: 1px solid #123ac8 !important;
+  border-radius: 1px;
 }
 
 .soytufan {
   height: 100%;
   width: 100%;
+  border: 1px solid #123ac8 !important;
+  border-radius: 1px;
+  box-shadow: 0 0 0 1px #123ac8;
+  position: relative;
 }
 
+.row {
+  padding: 0px !important;
+}
 .price {
-  display: block;
+  /* display: block; */
   width: 100%;
+  box-shadow: 0 0 0 1px #123ac8;
+  /* position: relative; */
+}
+.price-description {
+  margin-bottom: 5%;
+  width: 100%;
+  box-shadow: 0 0 0 1px #123ac8;
 }
 
 /* boton corazon */
@@ -52,6 +64,22 @@
   background-color: white;
 }
 
+/* .custom-col {
+  height: 100%;
+  width: 100%;
+  border: 1px solid #123ac8 !important;
+  border-radius: 4px;
+  border-collapse: separate;
+  box-shadow: 0 0 0 1px #123ac8;
+}
+.custom-col-m {
+  border: 1px solid #123ac8 !important;
+  border-radius: 4px;
+  font-size: 14px;
+  border-collapse: separate;
+  box-shadow: 0 0 0 1px #123ac8;
+}
+ */
 /* boton telefono */
 
 /* .phone-button {
