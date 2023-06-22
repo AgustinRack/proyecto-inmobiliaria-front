@@ -16,17 +16,32 @@ export const SignUp = () => {
   const phoneNumber = useInput();
 
   const handleRegister = async (e) => {
-    e.preventDefault();
-    await dispatch(
-      registerUser(
-        name.value,
-        lastName.value,
-        email.value,
-        password.value,
-        phoneNumber.value
-      )
-    );
-    navigate("/login");
+    try {
+      if (
+        !name.value ||
+        !lastName.value ||
+        !email.value ||
+        !password.value ||
+        !phoneNumber.value
+      ) {
+        e.preventDefault();
+        alert("Complete todos los campos para registrarse");
+      } else {
+        e.preventDefault();
+        await dispatch(
+          registerUser(
+            name.value,
+            lastName.value,
+            email.value,
+            password.value,
+            phoneNumber.value
+          )
+        );
+        navigate("/login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
