@@ -21,23 +21,39 @@ export default function CreateProperty() {
 
   const handleCreateProperty = async () => {
     try {
-      await axios.post(`${settings.axiosURL}/admin/new-property`, {
-        is_for_rent: is_for_rentInput,
-        price: priceInput.value,
-        country: countryInput.value,
-        province: provinceInput.value,
-        neighborhood: neighborhoodInput.value,
-        address: addressInput.value,
-        size: sizeInput.value,
-        bedrooms: bedroomsInput.value,
-        bathrooms: bathroomsInput.value,
-        description: descriptionInput.value,
-        img: imgInput.value,
-        imgs: imgsInput,
-        categoryId: categoryInput.value,
-      });
+      if (
+        !priceInput.value ||
+        !countryInput.value ||
+        !provinceInput.value ||
+        !neighborhoodInput.value ||
+        !addressInput.value ||
+        !sizeInput.value ||
+        !bedroomsInput.value ||
+        !bathroomsInput.value ||
+        !descriptionInput.value ||
+        !imgInput.value ||
+        !imgsInput.value
+      ) {
+        alert("Complete todos los campos para crear una propiedad");
+      } else {
+        await axios.post(`${settings.axiosURL}/admin/new-property`, {
+          is_for_rent: is_for_rentInput,
+          price: priceInput.value,
+          country: countryInput.value,
+          province: provinceInput.value,
+          neighborhood: neighborhoodInput.value,
+          address: addressInput.value,
+          size: sizeInput.value,
+          bedrooms: bedroomsInput.value,
+          bathrooms: bathroomsInput.value,
+          description: descriptionInput.value,
+          img: imgInput.value,
+          imgs: imgsInput,
+          categoryId: categoryInput.value,
+        });
 
-      alert("Propiedad creada correctamente");
+        alert("Propiedad creada correctamente");
+      }
     } catch (error) {
       console.error("Error updating property:", error);
     }
