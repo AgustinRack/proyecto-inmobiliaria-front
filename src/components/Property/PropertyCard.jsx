@@ -9,9 +9,13 @@ import { Link } from "react-router-dom";
 // import "../../css/propertyCard.css";
 import "../../css/styles.css";
 import { ListGroupItem } from "react-bootstrap";
+import * as settings from "../../settings/index";
+import axios from "axios";
+import { setFavorites } from "../../state/favorites";
 
 export default function PropertyCard({ property }) {
   const admin = useSelector((state) => state.user.admin);
+  const user = useSelector((state) => state.user.userData);
   const dispatch = useDispatch();
 
   const {
@@ -29,6 +33,39 @@ export default function PropertyCard({ property }) {
     imgs,
     category,
   } = property;
+
+  async function fetchFavorite(propertyId, userId) {
+    try {
+      const response = await axios.post(
+        `${settings.axiosURL}/favorites/new-favorite`,
+        {
+          user_id: userId,
+          properties_id: propertyId,
+        }
+      );
+
+      const favorites = await axios.get(
+        `${settings.axiosURL}/favorites/all/${user.id}`
+      );
+      const favoritesProperties = favorites.data.map(
+        (favorite) => favorite.property
+      );
+
+      dispatch(setFavorites(favoritesProperties));
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const handleFavorite = async (propertyId, userId) => {
+    try {
+      const createFavorites = await fetchFavorite(propertyId, userId);
+      alert(createFavorites.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Card className="Card">
@@ -90,7 +127,10 @@ export default function PropertyCard({ property }) {
               ) : (
                 <>
                   <Col>
-                    <button className="heart-button">
+                    <button
+                      className="heart-button"
+                      onClick={() => handleFavorite(property.id, user.id)}
+                    >
                       <span className="heart-icon"></span>
                     </button>
                   </Col>
