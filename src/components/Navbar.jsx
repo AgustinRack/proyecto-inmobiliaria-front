@@ -81,15 +81,6 @@ function NavigationBar() {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          {/* <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form> */}
         </Navbar.Collapse>
       </Container>
     </Navbar>
@@ -114,6 +105,9 @@ function NavigationBar() {
             </Nav.Link>
             <Nav.Link as={Link} to="/user/visits">
               Mis visitas
+            </Nav.Link>
+            <Nav.Link as={Link} to="/favorites">
+              Mis favoritos
             </Nav.Link>
             <NavDropdown title="más" id="navbarScrollingDropdown">
               {user.isAuthenticated ? (
