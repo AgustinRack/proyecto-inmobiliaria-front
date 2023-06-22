@@ -18,7 +18,6 @@ function NavigationBar() {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    axios.get(`${settings.axiosURL}/users/logout`);
     dispatch(logoutUser());
     navigate("/");
   };

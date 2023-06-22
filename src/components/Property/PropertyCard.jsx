@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedProperty } from "../../state/property";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import "../../css/propertyCard.css";
 import "../../css/styles.css";
 import { ListGroupItem } from "react-bootstrap";
@@ -17,6 +17,7 @@ export default function PropertyCard({ property }) {
   const admin = useSelector((state) => state.user.admin);
   const user = useSelector((state) => state.user.userData);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     id,
@@ -34,13 +35,13 @@ export default function PropertyCard({ property }) {
     category,
   } = property;
 
-  async function fetchFavorite(propertyId, userId) {
+  async function fetchFavorite() {
     try {
       const response = await axios.post(
         `${settings.axiosURL}/favorites/new-favorite`,
         {
-          user_id: userId,
-          properties_id: propertyId,
+          user_id: user.id,
+          properties_id: property.id,
         }
       );
 
@@ -58,10 +59,14 @@ export default function PropertyCard({ property }) {
     }
   }
 
-  const handleFavorite = async (propertyId, userId) => {
+  const handleFavorite = async () => {
     try {
-      const createFavorites = await fetchFavorite(propertyId, userId);
-      alert(createFavorites.data);
+      if (user) {
+        const createFavorites = await fetchFavorite();
+        alert(createFavorites.data);
+      } else {
+        navigate("/login");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -129,7 +134,7 @@ export default function PropertyCard({ property }) {
                   <Col>
                     <button
                       className="heart-button"
-                      onClick={() => handleFavorite(property.id, user.id)}
+                      onClick={() => handleFavorite()}
                     >
                       <span className="heart-icon"></span>
                     </button>
