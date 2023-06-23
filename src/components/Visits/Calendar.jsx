@@ -53,13 +53,14 @@ export default function AppointmentCalendar() {
       await axios.post(
         `${settings.axiosURL}/users/send-reminder/${user.email}`,
         {
-          customText: `Gracias por utilizar nuestros servicios. Te estara esperando uno de nuestros representantes en la provincia de ${
+          customText: ` Gracias por utilizar nuestros servicios. Te estara esperando uno de nuestros representantes en la provincia de ${
             property.province
-          }, en el vecindario ${property.neighborhood}, con la direccion: ${
+          }, en el vecindario ${property.neighborhood}, con la direccion ${
             property.address
           }, el dia ${moment(date).format(
             "DD/MM/YYYY"
-          )} a las ${hour}:00. Por favor ser puntual. En caso de`,
+          )} a las ${hour}:00. Por favor ser puntual. En caso de no poder asistir por favor comuniquese con el remitente de este mail.
+ Muchas gracias.`,
         }
       );
     } catch (error) {
