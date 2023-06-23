@@ -71,6 +71,7 @@ export default function AllUsers() {
               <div>
                 <h5 className="text-center">Información del usuario:</h5>
                 <Card.Text>Nombre: {user.name}</Card.Text>
+                <Card.Text>Apellido: {user.lastName}</Card.Text>
                 <Card.Text>Email: {user.email}</Card.Text>
                 <Card.Text>Teléfono: {user.phoneNumber}</Card.Text>
                 <Col>
