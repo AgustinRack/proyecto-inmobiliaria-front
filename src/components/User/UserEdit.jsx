@@ -26,6 +26,7 @@ export default function UserProfile() {
       });
       const updatedUser = response.data;
       dispatch(loginSuccess(updatedUser));
+      alert("Usuario editado correctamente");
     } catch (error) {
       console.error("Error updating user:", error);
     }
