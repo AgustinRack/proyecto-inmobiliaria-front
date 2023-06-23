@@ -3,8 +3,10 @@ import { Form, Button } from "react-bootstrap";
 import useInput from "../../hook/useInput";
 import axios from "axios";
 import * as settings from "../../settings/index";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateProperty() {
+  const navigate = useNavigate();
   const [is_for_rentInput, setIsForRentInput] = useState(false);
   const priceInput = useInput();
   const countryInput = useInput();
@@ -17,7 +19,7 @@ export default function CreateProperty() {
   const descriptionInput = useInput();
   const imgInput = useInput();
   const categoryInput = useInput(1);
-  const [imgsInput, setImgsInput] = useState([]);
+  const [imgsInput, setImgsInput] = useState([""]);
 
   const handleCreateProperty = async () => {
     try {
@@ -32,7 +34,8 @@ export default function CreateProperty() {
         !bathroomsInput.value ||
         !descriptionInput.value ||
         !imgInput.value ||
-        !imgsInput.value
+        !imgsInput.every((img) => Boolean(img.trim())) ||
+        !categoryInput.value
       ) {
         alert("Complete todos los campos para crear una propiedad");
       } else {
@@ -53,6 +56,7 @@ export default function CreateProperty() {
         });
 
         alert("Propiedad creada correctamente");
+        navigate("/");
       }
     } catch (error) {
       console.error("Error updating property:", error);

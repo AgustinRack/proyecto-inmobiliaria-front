@@ -51,8 +51,9 @@ export const PropertyEdit = () => {
       );
 
       const updatedProperty = response.data;
-      console.log(updatedProperty);
+
       dispatch(setSelectedProperty(updatedProperty));
+      alert("Propiedad editada correctamente");
     } catch (error) {
       console.error("Error updating property:", error);
     }
