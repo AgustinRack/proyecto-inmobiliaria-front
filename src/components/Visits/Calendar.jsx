@@ -35,9 +35,9 @@ export default function AppointmentCalendar() {
     setHours(hours.filter((hour) => hour !== selectedHour));
     await saveData(dateState, selectedHour);
     alert(
-      `Nos vemos el ${moment(dateState).format(
-        "DD/MM/YYYY"
-      )} a las ${selectedHour}:00`
+      `Se te envio un email como recodatorio de la visita. Nos vemos el ${moment(
+        dateState
+      ).format("DD/MM/YYYY")} a las ${selectedHour}:00`
     );
   };
 
@@ -49,6 +49,19 @@ export default function AppointmentCalendar() {
         date: moment(date).format("DD/MM/YYYY"),
         schedule: hour,
       });
+      await axios.post(
+        `${settings.axiosURL}/users/send-reminder/${user.email}`,
+        {
+          customText: ` Gracias por utilizar nuestros servicios. Te estara esperando uno de nuestros representantes en la provincia de ${
+            property.province
+          }, en el vecindario ${property.neighborhood}, con la direccion ${
+            property.address
+          }, el dia ${moment(date).format(
+            "DD/MM/YYYY"
+          )} a las ${hour}:00 hs. Por favor ser puntual. En caso de no poder asistir o tener algun inconveniente, puede avisarnos a traves de este remitente.
+ Muchas gracias.`,
+        }
+      );
     } catch (error) {
       console.log(error);
     }
