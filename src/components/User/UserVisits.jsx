@@ -5,7 +5,7 @@ import * as settings from "../../settings/index";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import useInput from "../../hook/useInput";
-import { Card, Container, Image, Row } from "react-bootstrap";
+import { Card, Container, Image, Row, Col } from "react-bootstrap";
 
 export default function UserVisits() {
   const user = useSelector((state) => state.user);
@@ -34,6 +34,15 @@ export default function UserVisits() {
 
   return (
     <Container>
+      <Row>
+        <Col>
+          <Card>
+            <Card.Body className="text-center">
+              <Card.Title>Mis Visitas</Card.Title>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
       <Row>
         {userVisits.value.map((visit) => (
           <Card key={visit.id} style={{ width: "18rem" }}>
