@@ -30,30 +30,47 @@ export const PropertyEdit = () => {
 
   const handleSaveProperty = async () => {
     try {
-      const response = await axios.put(
-        `${settings.axiosURL}/admin/property/edit`,
-        {
-          id: property.id,
-          is_for_rent: is_for_rentInput,
-          price: priceInput.value,
-          country: countryInput.value,
-          province: provinceInput.value,
-          neighborhood: neighborhoodInput.value,
-          address: addressInput.value,
-          size: sizeInput.value,
-          bedrooms: bedroomsInput.value,
-          bathrooms: bathroomsInput.value,
-          description: descriptionInput.value,
-          img: imgInput.value,
-          imgs: imgsInput,
-          categoryId: categoryInput.value,
-        }
-      );
+      if (
+        !priceInput.value ||
+        !countryInput.value ||
+        !provinceInput.value ||
+        !neighborhoodInput.value ||
+        !addressInput.value ||
+        !sizeInput.value ||
+        !bedroomsInput.value ||
+        !bathroomsInput.value ||
+        !descriptionInput.value ||
+        !imgInput.value ||
+        !imgsInput.every((img) => Boolean(img.trim())) ||
+        !categoryInput.value
+      ) {
+        alert("Complete todos los campos para editar una propiedad");
+      } else {
+        const response = await axios.put(
+          `${settings.axiosURL}/admin/property/edit`,
+          {
+            id: property.id,
+            is_for_rent: is_for_rentInput,
+            price: priceInput.value,
+            country: countryInput.value,
+            province: provinceInput.value,
+            neighborhood: neighborhoodInput.value,
+            address: addressInput.value,
+            size: sizeInput.value,
+            bedrooms: bedroomsInput.value,
+            bathrooms: bathroomsInput.value,
+            description: descriptionInput.value,
+            img: imgInput.value,
+            imgs: imgsInput,
+            categoryId: categoryInput.value,
+          }
+        );
 
-      const updatedProperty = response.data;
+        const updatedProperty = response.data;
 
-      dispatch(setSelectedProperty(updatedProperty));
-      alert("Propiedad editada correctamente");
+        dispatch(setSelectedProperty(updatedProperty));
+        alert("Propiedad editada correctamente");
+      }
     } catch (error) {
       console.error("Error updating property:", error);
     }

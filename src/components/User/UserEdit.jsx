@@ -17,16 +17,25 @@ export default function UserProfile() {
 
   const handleSave = async () => {
     try {
-      const response = await axios.put(`${settings.axiosURL}/users/edit`, {
-        id: user.id,
-        name: nameInput.value,
-        lastName: lastNameInput.value,
-        email: emailInput.value,
-        phoneNumber: phoneNumberInput.value,
-      });
-      const updatedUser = response.data;
-      dispatch(loginSuccess(updatedUser));
-      alert("Usuario editado correctamente");
+      if (
+        !nameInput.value ||
+        !lastNameInput.value ||
+        !emailInput.value ||
+        !phoneNumberInput.value
+      ) {
+        alert("Complete todos los campos para editar una propiedad");
+      } else {
+        const response = await axios.put(`${settings.axiosURL}/users/edit`, {
+          id: user.id,
+          name: nameInput.value,
+          lastName: lastNameInput.value,
+          email: emailInput.value,
+          phoneNumber: phoneNumberInput.value,
+        });
+        const updatedUser = response.data;
+        dispatch(loginSuccess(updatedUser));
+        alert("Usuario editado correctamente");
+      }
     } catch (error) {
       console.error("Error updating user:", error);
     }
