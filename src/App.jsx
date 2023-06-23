@@ -26,13 +26,11 @@ function App() {
 
   useEffect(() => {
     async function fetchUser() {
-      if (user.isAuthenticated) {
-        try {
-          const user = await axios.get(`${settings.axiosURL}/users/secret`);
-          await dispatch(loginSuccess(user.data));
-        } catch (error) {
-          console.error("Error al obtener el usuario:", error);
-        }
+      try {
+        const user = await axios.get(`${settings.axiosURL}/users/secret`);
+        await dispatch(loginSuccess(user.data));
+      } catch (error) {
+        console.error("Error al obtener el usuario:", error);
       }
     }
 
