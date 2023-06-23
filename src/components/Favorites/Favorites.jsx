@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import PropertyCard from "../Property/PropertyCard";
-import { setProperties } from "../../state/properties";
 import axios from "axios";
 import * as settings from "../../settings/index";
 import { setFavorites } from "../../state/favorites";
@@ -11,17 +10,20 @@ export default function Favorites() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.userData);
   const favorites = useSelector((state) => state.favorites);
+  const name = useSelector((state) => state.userName);
 
   async function fetchFavorites() {
     try {
-      const favorites = await axios.get(
-        `${settings.axiosURL}/favorites/all/${user.id}`
-      );
-      const favoritesProperties = favorites.data.map(
-        (favorite) => favorite.property
-      );
+      if (!user.admin) {
+        const favorites = await axios.get(
+          `${settings.axiosURL}/favorites/all/${user.id}`
+        );
+        const favoritesProperties = favorites.data.map(
+          (favorite) => favorite.property
+        );
 
-      dispatch(setFavorites(favoritesProperties));
+        dispatch(setFavorites(favoritesProperties));
+      }
     } catch (error) {
       console.log("soy el error del fetchFavorites", error);
     }
@@ -37,7 +39,11 @@ export default function Favorites() {
         <Col>
           <Card>
             <Card.Body className="text-center">
-              <Card.Title>Mis Favoritos</Card.Title>
+              {user.admin ? (
+                <Card.Title>Favoritos de {name}</Card.Title>
+              ) : (
+                <Card.Title>Mis Favoritos</Card.Title>
+              )}
             </Card.Body>
           </Card>
         </Col>

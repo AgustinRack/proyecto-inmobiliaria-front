@@ -19,6 +19,7 @@ import AppointmentCalendar from "./components/Visits/Calendar";
 import UserVisits from "./components/User/UserVisits";
 import PropertyCreate from "./components/Admin/PropertyCreate";
 import Favorites from "./components/Favorites/Favorites";
+import AllUsers from "./components/Admin/AllUsers";
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -69,6 +70,7 @@ function App() {
             <Route path="/admin/property/edit" element={<PropertyEdit />} />
             <Route path="/user/visits" element={<UserVisits />} />
             <Route path="/admin/create/property" element={<PropertyCreate />} />
+            <Route path="/admin/all-users" element={<AllUsers />} />
           </>
         )}
       </Routes>
