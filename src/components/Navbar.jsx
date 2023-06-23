@@ -46,6 +46,9 @@ function NavigationBar() {
             <Nav.Link as={Link} to="/user/visits">
               Visitas
             </Nav.Link>
+            <Nav.Link as={Link} to="/admin/all-users">
+              Usuarios
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
         {user.isAuthenticated && (

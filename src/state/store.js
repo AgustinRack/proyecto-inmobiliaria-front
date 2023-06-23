@@ -3,6 +3,7 @@ import userReducer from "./user/userSlice";
 import { propertiesReducer } from "./properties";
 import { selectedPropertyReducer } from "./property";
 import { favoritesReducer } from "./favorites";
+import { userNameReducer } from "./userName";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     properties: propertiesReducer,
     selectedProperty: selectedPropertyReducer,
     favorites: favoritesReducer,
+    userName: userNameReducer,
   },
 });
 
