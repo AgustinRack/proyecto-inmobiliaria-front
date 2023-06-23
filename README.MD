@@ -25,4 +25,5 @@ Mantener sesion abierta ante un cierre del browser o refresh
 CONFIGURACION:
 Clona este repositorio y corre en la terminal
 NPM I - para instalar las dependendecias
+crear un EMAIL y un EMAIL_PASSWORD
 una vez instaladas las dependecias correr en la terminal NPM RUN DEV
