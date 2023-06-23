@@ -131,16 +131,16 @@ export default function PropertyGrid() {
   return (
     <Container>
       <Row>
-        <Col xs={8}>
+        <Col xs={6}>
           <Form.Control
             value={query}
             onChange={handleInputChange}
-            placeholder="Search by province"
+            placeholder="Buscar por provincia"
           />
         </Col>
-        <Col xs={4}>
+        <Col xs={2}>
           <Button variant="outline-success" onClick={handleSearch} block>
-            Search
+            Buscar
           </Button>
         </Col>
         <Col xs={12} className="d-flex buttons-container">

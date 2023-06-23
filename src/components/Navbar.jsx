@@ -27,8 +27,12 @@ function NavigationBar() {
     <Navbar className="navbar-admin" expand="lg" variant="dark">
       <Container fluid>
         <Navbar.Brand as={Link} to="/" style={{ color: "white" }}>
-          <img src={hLogo} alt="H" style={{ marginRight: 10 }} />
-          <img src={odLogo} alt="OD" />
+          <img
+            src={hLogo}
+            alt="H"
+            style={{ marginRight: 2, width: 30, height: "auto" }}
+          />
+          <img src={odLogo} alt="OD" style={{ width: 80, height: "auto" }} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -52,11 +56,19 @@ function NavigationBar() {
           </Nav>
         </Navbar.Collapse>
         {user.isAuthenticated && (
-          <Navbar.Brand as={Link} to="/" style={{ color: "white" }}>
+          <Navbar.Brand
+            as={Link}
+            to="/"
+            style={{ color: "white", fontFamily: "Arial, sans-serif" }}
+          >
             {user.userData.name}
           </Navbar.Brand>
         )}
-        <NavDropdown title="más" id="navbarScrollingDropdown">
+        <NavDropdown
+          title="más"
+          id="navbarScrollingDropdown"
+          className="custom-nav-dropdown"
+        >
           {user.isAuthenticated && (
             <>
               <NavDropdown.Item as={Link} to="/user/profile">
@@ -85,8 +97,12 @@ function NavigationBar() {
     <Navbar className="navbar-custom" expand="lg" variant="dark">
       <Container fluid>
         <Navbar.Brand as={Link} to="/" style={{ color: "white" }}>
-          <img src={hLogo} alt="H" style={{ marginRight: 10 }} />
-          <img src={odLogo} alt="OD" />
+          <img
+            src={hLogo}
+            alt="H"
+            style={{ marginRight: 2, width: 30, height: "auto" }}
+          />
+          <img src={odLogo} alt="OD" style={{ width: 80, height: "auto" }} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -111,10 +127,18 @@ function NavigationBar() {
         </Navbar.Collapse>
         {user.isAuthenticated ? (
           <>
-            <Navbar.Brand as={Link} to="/" style={{ color: "white" }}>
+            <Navbar.Brand
+              as={Link}
+              to="/"
+              style={{ color: "white", fontFamily: "Arial, sans-serif" }}
+            >
               {user.userData.name}
             </Navbar.Brand>
-            <NavDropdown title="más" id="navbarScrollingDropdown">
+            <NavDropdown
+              title="más"
+              id="navbarScrollingDropdown"
+              className="custom-nav-dropdown"
+            >
               {user.isAuthenticated ? (
                 <>
                   <NavDropdown.Item as={Link} to="/user/profile">

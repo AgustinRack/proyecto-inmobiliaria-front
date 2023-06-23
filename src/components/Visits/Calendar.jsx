@@ -6,6 +6,7 @@ import "./CalendarStyles/styles.css";
 import * as settings from "../../settings/index";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { Container, Row, Col } from "react-bootstrap";
 
 export default function AppointmentCalendar() {
   const property = useSelector((state) => state.selectedProperty);
@@ -52,14 +53,13 @@ export default function AppointmentCalendar() {
       await axios.post(
         `${settings.axiosURL}/users/send-reminder/${user.email}`,
         {
-          customText: ` Gracias por utilizar nuestros servicios. Te estara esperando uno de nuestros representantes en la provincia de ${
+          customText: `Gracias por utilizar nuestros servicios. Te estara esperando uno de nuestros representantes en la provincia de ${
             property.province
-          }, en el vecindario ${property.neighborhood}, con la direccion ${
+          }, en el vecindario ${property.neighborhood}, con la direccion: ${
             property.address
           }, el dia ${moment(date).format(
             "DD/MM/YYYY"
-          )} a las ${hour}:00 hs. Por favor ser puntual. En caso de no poder asistir o tener algun inconveniente, puede avisarnos a traves de este remitente.
- Muchas gracias.`,
+          )} a las ${hour}:00. Por favor ser puntual. En caso de`,
         }
       );
     } catch (error) {
@@ -114,35 +114,41 @@ export default function AppointmentCalendar() {
   }
 
   return (
-    <>
-      <Calendar
-        value={dateState}
-        onChange={changeDate}
-        tileDisabled={disableDays}
-      />
-      {dateState !== today ? (
-        <>
-          {hours.map((hour, index) => {
-            return (
-              <button
-                className="hora"
-                key={index}
-                onClick={() => handleSaveHour(index)}
-                style={{
-                  backgroundColor: selectedHour === hour ? "blue" : "green",
-                }}
-              >
-                {hour}:00
+    <Container className="h-100">
+      <Row className="justify-content-center align-items-center h-100 mt-4">
+        <Col xs={12} md={6}>
+          <h2 className="text-center mb-4">Agenda tu visita</h2>
+          <Calendar
+            className="w-100"
+            value={dateState}
+            onChange={changeDate}
+            tileDisabled={disableDays}
+          />
+          {dateState !== today ? (
+            <>
+              {hours.map((hour, index) => {
+                return (
+                  <button
+                    className="hora"
+                    key={index}
+                    onClick={() => handleSaveHour(index)}
+                    style={{
+                      backgroundColor: selectedHour === hour ? "blue" : "green",
+                    }}
+                  >
+                    {hour}:00
+                  </button>
+                );
+              })}
+              <button className="confirm" onClick={handleConfirm}>
+                Confirmar
               </button>
-            );
-          })}
-          <button className="confirm" onClick={handleConfirm}>
-            Confirmar
-          </button>
-        </>
-      ) : (
-        <p>Elija una fecha para su visita</p>
-      )}
-    </>
+            </>
+          ) : (
+            <p>Elija una fecha para su visita</p>
+          )}
+        </Col>
+      </Row>
+    </Container>
   );
 }

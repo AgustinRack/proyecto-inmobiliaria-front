@@ -76,41 +76,116 @@ export default function PropertyCard({ property }) {
     <Card className="Card">
       <Row>
         <Col xs={12} md={4}>
-          <Card.Img className="soytufan" variant="top" src={img} />
+          <Card.Img className="card-images" variant="top" src={img} />
         </Col>
         <Col xs={12} md={8}>
           <Card.Body>
             <Row>
               <Col xs={12} md={4} className="price">
-                <ListGroup.Item>{price}</ListGroup.Item>
+                <ListGroup.Item
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  $ {price}
+                </ListGroup.Item>
               </Col>
               <Col xs={12} md={8} className="price">
-                <ListGroup.Item>{province}</ListGroup.Item>
+                <ListGroup.Item
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  {province}
+                </ListGroup.Item>
               </Col>
             </Row>
             <Row>
               <Col xs={6} md={4} className="price">
-                <ListGroup.Item>Size: {size} m²</ListGroup.Item>
+                <ListGroup.Item
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  {size} m²
+                </ListGroup.Item>
               </Col>
               <Col xs={6} md={4} className="price">
-                {category.categoryName !== "terreno" && (
+                {category.categoryName !== "terreno" ? (
                   <>
                     {bathrooms === 1 ? (
-                      <ListGroup.Item>{bathrooms} baño</ListGroup.Item>
+                      <ListGroup.Item
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        {bathrooms} baño
+                      </ListGroup.Item>
                     ) : (
-                      <ListGroup.Item>{bathrooms} baños</ListGroup.Item>
+                      <ListGroup.Item
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        {bathrooms} baños
+                      </ListGroup.Item>
                     )}
                   </>
+                ) : (
+                  <ListGroup.Item
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    ------
+                  </ListGroup.Item>
                 )}
               </Col>
               <Col xs={6} md={4} className="price">
-                {category.categoryName !== "terreno" && (
-                  <ListGroup.Item>{bedrooms} dorm.</ListGroup.Item>
+                {category.categoryName !== "terreno" ? (
+                  <ListGroup.Item
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    {bedrooms} dorm.
+                  </ListGroup.Item>
+                ) : (
+                  <ListGroup.Item
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    ------
+                  </ListGroup.Item>
                 )}
               </Col>
             </Row>
             <Row>
-              <ListGroupItem className="price-description">
+              <ListGroupItem
+                className="price-description"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
                 {description}
               </ListGroupItem>
             </Row>

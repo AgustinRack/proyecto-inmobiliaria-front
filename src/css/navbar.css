@@ -5,3 +5,18 @@
 .navbar-admin {
   background: #3380ff;
 }
+
+.custom-nav-dropdown .dropdown-menu {
+  right: auto;
+  left: auto;
+  transform: translateX(-75%);
+  min-width: 10rem;
+}
+
+.custom-nav-dropdown .dropdown-toggle {
+  color: white;
+}
+
+.navbar .nav-link {
+  font-size: 1.2rem;
+}
