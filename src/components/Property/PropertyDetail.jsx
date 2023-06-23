@@ -5,6 +5,8 @@ import {
   BsFillArrowRightCircleFill,
   BsFillArrowLeftCircleFill,
 } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import "../../css/styles.css";
 
 export const PropertyDetail = () => {
   const property = useSelector((state) => state.selectedProperty);
@@ -108,6 +110,13 @@ export const PropertyDetail = () => {
                 <p style={{ marginLeft: "20px" }}>Baños: {bathrooms}</p>
               </div>
               <h4>Precio: $ {price}</h4>
+              <Col>
+                <Link to="/visits/appointment">
+                  <button className="phone-button">
+                    <span className="call-icon"></span>
+                  </button>
+                </Link>
+              </Col>
             </div>
           </div>
         </Col>
