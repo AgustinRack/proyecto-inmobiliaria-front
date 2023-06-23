@@ -5,13 +5,14 @@
   border-radius: 1px;
 }
 
-.soytufan {
-  height: 100%;
-  width: 100%;
+.card-images {
+  height: 200px; /* Tamaño fijo para la altura */
+  width: 100%; /* Opcional: Tamaño fijo para el ancho */
   border: 1px solid #123ac8 !important;
   border-radius: 1px;
   box-shadow: 0 0 0 1px #123ac8;
   position: relative;
+  object-fit: cover; /* Ajusta la imagen al espacio sin perder calidad */
 }
 
 .row {
@@ -160,11 +161,11 @@
 /* boton ver mas admin*/
 
 .custom-button-admin {
-  width: 100px;
-  height: 100px;
-  border: none;
+  height: 60px;
   background-color: transparent;
-  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .button-icon-admin {
