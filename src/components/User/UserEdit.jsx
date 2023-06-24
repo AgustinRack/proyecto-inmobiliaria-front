@@ -23,7 +23,7 @@ export default function UserProfile() {
         !emailInput.value ||
         !phoneNumberInput.value
       ) {
-        alert("Complete todos los campos para su perfil");
+        alert("Complete todos los campos para editar su perfil");
       } else {
         const response = await axios.put(`${settings.axiosURL}/users/edit`, {
           id: user.id,
